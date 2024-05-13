@@ -1,0 +1,240 @@
+Aluno
+---
+- id: Long
+- nomeCompleto: str
+- matricula: str
+- email: str
+- periodoConclusao: str
+---
+---
+
+AlunoPostPutRequestDTO
+---
+- nomeCompleto: str
+- matricula: str
+- email: str
+- periodoConclusao: str
+---
+---
+
+AlunoGetRequestDTO
+---
+- id: Long
+- nomeCompleto: str
+- matricula: str
+- email: str
+- periodoConclusao: str
+---
++ AlunoGetRequestDTO(aluno: Aluno)
+---
+
+AlunoResponseDTO
+---
+- id: Long
+- nomeCompleto: str
+- matricula: str
+- email: str
+- periodoConclusao: str
+---
++ AlunoResponseDTO(aluno: Aluno)
+---
+
+AlunoController
+aggregates AlunoService<Interface>
+---
+- alunoService: AlunoService
+---
++ cadastrarAluno(alunoDTO: AlunoPostPutRequestDTO): ResponseEntity<?>
++ acessarAluno(id: Long): ResponseEntity<?>
++ acessarTodosAlunos(): ResponseEntity<?>
++ atualizarAluno(id: Long, alunoDTO: AlunoPostPutRequestDTO): ResponseEntity<?>
++ removerAluno(id: Long): ResponseEntity<?>
+---
+
+AlunoService<Interface>
+---
+---
++ cadastrarAluno(alunodDTO: AlunoPostPutRequestDTO): AlunoResponseDTO
++ acessarAluno(id: Long): AlunoResponseDTO
++ acessarTodosAlunos(): List<AlunoResponseDTO>
++ atualizarAluno(id: Long, alunoDTO: AlunoPostPutRequestDTO): AlunoResponseDTO
++ removerAluno(id: Long): void
+---
+
+AlunoServiceImpl
+implements AlunoService<Interface>
+composes AlunoRepository<Interface>
+---
+- alunoRepository: AlunoRepository<Interface>
+---
++ cadastrarAluno(alunodDTO: AlunoPostPutRequestDTO): AlunoResponseDTO
++ acessarAluno(id: Long): AlunoResponseDTO
++ acessarTodosAlunos(): List<AlunoResponseDTO>
++ atualizarAluno(id: Long, alunoDTO: AlunoPostPutRequestDTO): AlunoResponseDTO
++ removerAluno(id: Long): void
+---
+
+AlunoRepository<Interface>
+extends JpaRepository<Interface>
+---
+---
+---
+
+Professor
+composes Laboratorio
+---
+- id: Long
+- nomeCompleto: str
+- email: str
+- laboratorios: str
+---
+---
+
+ProfessorPostPutRequestDTO
+composes Laboratorio
+---
+- nomeCompleto: str
+- email: str
+- laboratorios: List<Laboratorio>
+---
+---
+
+ProfessorResponseDTO
+composes Laboratorio
+---
+- id: Long
+- nomeCompleto: str
+- email: str
+- laboratorios: List<Laboratorio>
+---
++ ProfessorResponseDTO(professor: Professor)
+---
+
+ProfessorGetRequestDTO
+composes Laboratorio
+---
+- id: Long
+- nomeCompleto: str
+- email: str
+- laboratorios: List<Laboratorio>
+---
++ ProfessorGetRequestDTO(professor: Professor)
+---
+
+Laboratorio
+---
+- nome: str
+---
++ getNome(): str
+---
+
+ProfessorController
+aggregates ProfessorService<Interface>
+---
+- professorService: ProfessorService<Interface>
+---
++ cadastrarProfessor(professorDTO: ProfessorPostPutRequestDTO): ResponseEntity<?>
++ acessarProfessor(id: Long): ResponseEntity<?>
++ acessarTodosProfessores(): ResponseEntity<?>
++ atualizarProfessor(id: Long, professorDTO: ProfessorPostPutRequestDTO): ResponseEntity<?>
++ removerProfessor(id: Long): ResponseEntity<?>
+---
+
+ProfessorService<Interface>
+---
+---
++ cadastrarProfessor(professorDTO: ProfessorPostPutRequestDTO): ProfessorResponseDTO
++ acessarProfessor(id: Long): ProfessorResponseDTO
++ acessarTodosProfessores(): List<ProfessorResponseDTO>
++ atualizarProfessor(id: Long, professorDTO: ProfessorPostPutRequestDTO): ProfessorResponseDTO
++ removerProfessor(id: Long): void
+---
+
+ProfessorServiceImpl
+implements ProfessorService<Interface>
+composes ProfessorRepository<Interface>
+---
+- professorRepository: ProfessorRepository<Interface>
+---
++ cadastrarProfessor(professorDTO: ProfessorPostPutRequestDTO): ProfessorResponseDTO
++ acessarProfessor(id: Long): ProfessorResponseDTO
++ acessarTodosProfessores(): List<ProfessorResponseDTO>
++ atualizarProfessor(id: Long, professorDTO: ProfessorPostPutRequestDTO): ProfessorResponseDTO
++ removerProfessor(id: Long): void
+---
+
+ProfessorRepository<Interface>
+extends JpaRepository<Interface>
+---
+---
+---
+
+AreaDeEstudo
+---
+- id: Long
+- nome: str
+---
+---
+
+AreaDeEstudoPostPutRequestDTO
+---
+- nome: str
+---
+---
+
+AreaDeEstudoResponseDTO
+---
+- id: Long
+- nome: str
+---
++ AreaDeEstudoResponseDTO(areaDeEstudo: AreaDeEstudo)
+---
+
+AreaDeEstudoGetRequestDTO
+---
+- id: Long
+- nome: str
+---
++ AreaDeEstudoGetRequestDTO(areaDeEstudo: AreaDeEstudo)
+---
+
+AreaDeEstudoController
+aggregates AreaDeEstudoService<Interface>
+---
+- areaDeEstudoService: AreaDeEstudoService<Interface>
+---
++ cadastrarAreaDeEstudo(areaDeEstudoDTO: AreaDeEstudoPostPutRequestDTO): ResponseEntity<?>
++ acessarAreaDeEstudo(id: Long): ResponseEntity<?>
++ acessarTodasAreasDeEstudo(): ResponseEntity<?>
++ atualizarAreaDeEstudo(id: Long, areaDeEstudoDTO: AreaDeEstudoPostPutRequestDTO): ResponseEntity<?>
++ removerAreaDeEstudo(id: Long): ResponseEntity<?>
+---
+
+AreaDeEstudoService<Interface>
+---
+---
++ cadastrarAreaDeEstudo(areaDeEstudoDTO: AreaDeEstudoPostPutRequestDTO): AreaDeEstudoResponseDTO
++ acessarAreaDeEstudo(id: Long): AreaDeEstudoResponseDTO
++ acessarTodasAreasDeEstudo(): List<AreaDeEstudoResponseDTO>
++ atualizarAreaDeEstudo(id: Long, areaDeEstudoDTO: AreaDeEstudoPostPutRequestDTO): AreaDeEstudoResponseDTO
++ removerAreaDeEstudo(id: Long): void
+---
+
+AreaDeEstudoServiceImpl
+implements AreaDeEstudoService<Interface>
+composes AreaDeEstudoRepository<Interface>
+---
++ areaDeEstudoRepository: AreaDeEstudoRepository<Interface>
+---
++ cadastrarAreaDeEstudo(areaDeEstudoDTO: AreaDeEstudoPostPutRequestDTO): AreaDeEstudoResponseDTO
++ acessarAreaDeEstudo(id: Long): AreaDeEstudoResponseDTO
++ acessarTodasAreasDeEstudo(): List<AreaDeEstudoResponseDTO>
++ atualizarAreaDeEstudo(id: Long, areaDeEstudoDTO: AreaDeEstudoPostPutRequestDTO): AreaDeEstudoResponseDTO
++ removerAreaDeEstudo(id: Long): void
+---
+
+AreaDeEstudoRepository<Interface>
+extends JpaRepository<Interface>
+---
+---
+---
